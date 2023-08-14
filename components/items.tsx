@@ -98,11 +98,6 @@ const categories = [
 const Items = ({ items }: ItemsProps) => {
   const [selectValue, setSelectValue] = useState("Todas");
 
-  const filteredItems =
-    selectValue === "Todas"
-      ? items
-      : items.filter((item) => item.attributes.categoria === selectValue);
-
   return (
     <div className="flex flex-col gap-3 w-full">
       <div className="w-full flex flex-col gap-2">
