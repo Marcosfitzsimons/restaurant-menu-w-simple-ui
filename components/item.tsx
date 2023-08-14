@@ -34,7 +34,7 @@ const Item = ({ item }: ItemProps) => {
           </h4>
         )}
         {item.attributes.descripcion && (
-          <p className="text-[12px] w-8/12 relative">
+          <p className="text-[12px] w-8/12 relative leading-3">
             {item.attributes.descripcion}
           </p>
         )}
