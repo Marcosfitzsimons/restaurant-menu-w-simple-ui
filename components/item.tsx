@@ -23,7 +23,7 @@ interface ItemProps {
 const Item = ({ item }: ItemProps) => {
   return (
     <article
-      className="w-full flex items-center justify-between py-1 px-2 rounded-xl transition-all odd:bg-[#ddf8f5] even:bg-[#f4fffa] dark:odd:bg-[#e3fdf0]/20 dark:even:bg-[#f4fffa]/5 hover:scale-105"
+      className="w-full flex items-center justify-between p-2 rounded-xl transition-all odd:bg-[#ddf8f5] even:bg-[#f4fffa] dark:odd:bg-[#e3fdf0]/20 dark:even:bg-[#f4fffa]/5 lg:px-4"
       key={item.id}
     >
       <div className="flex flex-col">

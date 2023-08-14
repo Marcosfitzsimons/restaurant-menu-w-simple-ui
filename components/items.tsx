@@ -86,7 +86,7 @@ const categories = [
 
 const Items = ({ items }: ItemsProps) => {
   return (
-    <section className="w-full flex flex-col gap-6 pb-10">
+    <section className="w-full flex flex-col items-center gap-6 pb-10 sm:grid sm:grid-cols-2 sm:items-start lg:grid-cols-3 lg:grid-rows-3">
       {categories.map(({ title, category, icon }) => {
         const filteredList = items.filter(
           (item) => item.attributes.categoria === category
