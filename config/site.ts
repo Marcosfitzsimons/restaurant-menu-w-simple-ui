@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Golfo Nuevo Confitería - Menu",
+  name: "Confitería Golfo Nuevo - Menu",
   description:
-    "Golfo Nuevo Confitería - ¿Qué le gustaría ordenar?",
+    "Confitería Golfo Nuevo - ¿Qué le gustaría ordenar?",
   mainNav: [
     {
       title: "Inicio",

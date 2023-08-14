@@ -12,8 +12,8 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata: Metadata = {
-  title: "Golfo Nuevo Confitería - Menu",
-  description: "Golfo Nuevo Confitería - ¿Qué le gustaría ordenar?",
+  title: "Confitería Golfo Nuevo - Menu",
+  description: "Confitería Golfo Nuevo - ¿Qué le gustaría ordenar?",
 };
 
 export default function RootLayout({
