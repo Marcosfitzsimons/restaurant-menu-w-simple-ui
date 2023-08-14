@@ -1,5 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import ListFilteredByCategory from "./list-filtered-by-category";
 import { Icons } from "./icons";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 type Attributes = {
   titulo: string;
@@ -85,22 +96,63 @@ const categories = [
 ];
 
 const Items = ({ items }: ItemsProps) => {
+  const [selectValue, setSelectValue] = useState("Todas");
+
+  const filteredItems =
+    selectValue === "Todas"
+      ? items
+      : items.filter((item) => item.attributes.categoria === selectValue);
+
   return (
-    <section className="w-full flex flex-col items-center gap-6 pb-10 sm:grid sm:grid-cols-2 sm:items-start lg:grid-cols-3 lg:grid-rows-3">
-      {categories.map(({ title, category, icon }) => {
-        const filteredList = items.filter(
-          (item) => item.attributes.categoria === category
-        );
-        return (
-          <ListFilteredByCategory
-            key={category}
-            icon={icon}
-            title={title}
-            filteredList={filteredList}
-          />
-        );
-      })}
-    </section>
+    <div className="flex flex-col gap-3 w-full">
+      <div className="w-full flex flex-col gap-2">
+        <Label>Categorías</Label>
+        <Select value={selectValue} onValueChange={(v) => setSelectValue(v)}>
+          <SelectTrigger className="w-full sm:w-[190px]">
+            <SelectValue placeholder="Todas" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Todas">Todas</SelectItem>
+            <SelectItem value="Promos">Promos</SelectItem>
+            <SelectItem value="Cafeteria">Cafetería</SelectItem>
+            <SelectItem value="Dulces">Dulces</SelectItem>
+            <SelectItem value="Sandwiches tostados">
+              Sandwiches tostados
+            </SelectItem>
+            <SelectItem value="Sandwiches especiales">
+              Sandwiches especiales
+            </SelectItem>
+            <SelectItem value="Hamburguesas">Hamburguesas</SelectItem>
+            <SelectItem value="Pizzas">Pizzas</SelectItem>
+            <SelectItem value="Panchos">Panchos</SelectItem>
+            <SelectItem value="Empanadas">Empanadas</SelectItem>
+            <SelectItem value="Ensaladas">Ensaladas</SelectItem>
+            <SelectItem value="Bebidas">Bebidas</SelectItem>
+            <SelectItem value="Bebidas alcohol">Bebidas alcohol</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <section className="w-full flex flex-col items-center gap-6 pb-10 sm:grid sm:grid-cols-2 sm:items-start lg:grid-cols-3 lg:grid-rows-3">
+        {categories.map(({ title, category, icon }) => {
+          const filteredList = items.filter(
+            (item) => item.attributes.categoria === category
+          );
+
+          if (selectValue !== "Todas" && selectValue !== category) {
+            return null; // Skip rendering if category doesn't match
+          }
+
+          return (
+            <ListFilteredByCategory
+              key={category}
+              icon={icon}
+              title={title}
+              filteredList={filteredList}
+            />
+          );
+        })}
+      </section>
+    </div>
   );
 };
 
