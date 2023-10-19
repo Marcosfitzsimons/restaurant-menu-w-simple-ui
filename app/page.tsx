@@ -2,7 +2,9 @@ import Items from "@/components/items";
 import { siteConfig } from "@/config/site";
 
 async function getData() {
-  const res = await fetch(`${siteConfig.endPoints.getAll.url}`);
+  const res = await fetch(`${siteConfig.endPoints.getAll.url}`, {
+    next: { revalidate: 3600 },
+  });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
