@@ -12,91 +12,96 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
-type Attributes = {
-  titulo: string;
-  tituloIngles?: string;
-  descripcion?: string;
-  categoria: string;
-  precio: number;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-};
-
-type ItemType = {
-  id: number;
-  attributes: Attributes;
+type Product = {
+  _id: string;
+  title: string;
+  englishTitle?: string;
+  description?: string;
+  price: number;
+  category:
+    | "promos"
+    | "cafeteria"
+    | "dulces"
+    | "bebidas"
+    | "bebidas-alcohol"
+    | "hamburguesas"
+    | "pizzas"
+    | "sandwiches-tostados"
+    | "sandwiches-especiales"
+    | "ensaladas"
+    | "empanadas"
+    | "panchos";
 };
 
 interface ItemsProps {
-  items: ItemType[];
+  items: Product[];
 }
 
 const categories = [
   {
     title: "Promos",
-    category: "Promos",
+    category: "promos",
     icon: <Icons.wan className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Cafetería",
-    category: "Cafeteria",
+    category: "cafeteria",
     icon: <Icons.coffee className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Dulces",
-    category: "Dulces",
+    category: "dulces",
     icon: <Icons.croissant className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Sandwiches tostados",
-    category: "Sandwiches tostados",
+    category: "sandwiches-tostados",
     icon: <Icons.sandwich className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Sandwiches especiales",
-    category: "Sandwiches especiales",
+    category: "sandwiches-especiales",
     icon: <Icons.sandwich className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Hamburguesas",
-    category: "Hamburguesas",
+    category: "hamburguesas",
     icon: <Icons.sandwich className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Pizzas",
-    category: "Pizzas",
+    category: "pizzas",
     icon: <Icons.pizza className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Panchos",
-    category: "Panchos",
+    category: "panchos",
     icon: <Icons.sandwich className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Empanadas",
-    category: "Empanadas",
+    category: "empanadas",
     icon: <Icons.sandwich className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Ensaladas",
-    category: "Ensaladas",
+    category: "ensaladas",
     icon: <Icons.salad className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Bebidas",
-    category: "Bebidas",
+    category: "bebidas",
     icon: <Icons.cupSoda className="w-5 h-5" strokeWidth={3} />,
   },
   {
     title: "Bebidas alcohol",
-    category: "Bebidas con alcohol",
+    category: "bebidas-alcohol",
     icon: <Icons.beer className="w-5 h-5" strokeWidth={3} />,
   },
 ];
 
 const Items = ({ items }: ItemsProps) => {
-  const [selectValue, setSelectValue] = useState("Todas");
+  const [selectValue, setSelectValue] = useState("todas");
 
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -107,33 +112,33 @@ const Items = ({ items }: ItemsProps) => {
             <SelectValue placeholder="Todas" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="Todas">Todas</SelectItem>
-            <SelectItem value="Promos">Promos</SelectItem>
-            <SelectItem value="Cafeteria">Cafetería</SelectItem>
-            <SelectItem value="Dulces">Dulces</SelectItem>
-            <SelectItem value="Sandwiches tostados">
+            <SelectItem value="todas">Todas</SelectItem>
+            <SelectItem value="promos">Promos</SelectItem>
+            <SelectItem value="cafeteria">Cafetería</SelectItem>
+            <SelectItem value="dulces">Dulces</SelectItem>
+            <SelectItem value="sandwiches-tostados">
               Sandwiches tostados
             </SelectItem>
-            <SelectItem value="Sandwiches especiales">
+            <SelectItem value="sandwiches-especiales">
               Sandwiches especiales
             </SelectItem>
-            <SelectItem value="Hamburguesas">Hamburguesas</SelectItem>
-            <SelectItem value="Pizzas">Pizzas</SelectItem>
-            <SelectItem value="Panchos">Panchos</SelectItem>
-            <SelectItem value="Empanadas">Empanadas</SelectItem>
-            <SelectItem value="Ensaladas">Ensaladas</SelectItem>
-            <SelectItem value="Bebidas">Bebidas</SelectItem>
-            <SelectItem value="Bebidas alcohol">Bebidas alcohol</SelectItem>
+            <SelectItem value="hamburguesas">Hamburguesas</SelectItem>
+            <SelectItem value="pizzas">Pizzas</SelectItem>
+            <SelectItem value="panchos">Panchos</SelectItem>
+            <SelectItem value="empanadas">Empanadas</SelectItem>
+            <SelectItem value="ensaladas">Ensaladas</SelectItem>
+            <SelectItem value="bebidas">Bebidas</SelectItem>
+            <SelectItem value="bebidas-alcohol">Bebidas alcohol</SelectItem>
           </SelectContent>
         </Select>
       </div>
       <section className="w-full flex flex-col items-center gap-6 pb-10 sm:grid sm:grid-cols-2 sm:items-start lg:grid-cols-3 lg:grid-rows-3">
         {categories.map(({ title, category, icon }) => {
           const filteredList = items.filter(
-            (item) => item.attributes.categoria === category
+            (item) => item.category === category
           );
 
-          if (selectValue !== "Todas" && selectValue !== category) {
+          if (selectValue !== "todas" && selectValue !== category) {
             return null; // Skip rendering if category doesn't match
           }
 

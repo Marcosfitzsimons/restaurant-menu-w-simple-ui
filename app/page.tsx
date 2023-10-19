@@ -16,7 +16,7 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
-  const items = data.data;
+  const items = data;
   return (
     <main className="container min-h-screen flex  flex-col items-center gap-6 pt-6">
       <h1 className="text-xl">{siteConfig.name}</h1>

@@ -16,10 +16,7 @@ export const siteConfig = {
   },
   endPoints: {
     "getAll": {
-      "url": `${process.env.BASE_ENDPOINT}/products/?populate=*?pagination[page]=1&pagination[pageSize]=150`
+      "url": `${process.env.BASE_ENDPOINT}/products`
     },
-    "getCategory": {
-      "url": `${process.env.BASE_ENDPOINT}/products?populate=*&filters[0][categoria][$eq]=` // :category
-    }
   }
 }

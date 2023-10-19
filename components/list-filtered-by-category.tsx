@@ -3,24 +3,29 @@ import Item from "./item";
 import { Separator } from "./ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-type Attributes = {
-  titulo: string;
-  tituloIngles?: string;
-  descripcion?: string;
-  categoria: string;
-  precio: number;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-};
-
-type ItemType = {
-  id: number;
-  attributes: Attributes;
+type Product = {
+  _id: string;
+  title: string;
+  englishTitle?: string;
+  description?: string;
+  price: number;
+  category:
+    | "promos"
+    | "cafeteria"
+    | "dulces"
+    | "bebidas"
+    | "bebidas-alcohol"
+    | "hamburguesas"
+    | "pizzas"
+    | "sandwiches-tostados"
+    | "sandwiches-especiales"
+    | "ensaladas"
+    | "empanadas"
+    | "panchos";
 };
 
 interface CategoryFilteredListProps {
-  filteredList: ItemType[];
+  filteredList: Product[];
   title: string;
   icon: any;
 }
@@ -38,9 +43,9 @@ const ListFilteredByCategory = ({
 
       <ScrollArea className="flex flex-col w-full lg:h-[420px]">
         {filteredList.length > 0 ? (
-          filteredList.map((item) => <Item item={item} key={item.id} />)
+          filteredList.map((item) => <Item item={item} key={item._id} />)
         ) : (
-          <p>No hay items disponibles en esta categoría.</p>
+          <p>No hay productos disponibles en esta categoría</p>
         )}
       </ScrollArea>
       <Separator className="absolute self-center -bottom-3 w-4 sm:hidden" />

@@ -1,45 +1,50 @@
 import React from "react";
 
-type Attributes = {
-  titulo: string;
-  tituloIngles?: string;
-  descripcion?: string;
-  categoria: string;
-  precio: number;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-};
-
-type Item = {
-  id: number;
-  attributes: Attributes;
+type Product = {
+  _id: string;
+  title: string;
+  englishTitle?: string;
+  description?: string;
+  price: number;
+  category:
+    | "promos"
+    | "cafeteria"
+    | "dulces"
+    | "bebidas"
+    | "bebidas-alcohol"
+    | "hamburguesas"
+    | "pizzas"
+    | "sandwiches-tostados"
+    | "sandwiches-especiales"
+    | "ensaladas"
+    | "empanadas"
+    | "panchos";
 };
 
 interface ItemProps {
-  item: Item;
+  item: Product;
 }
 
 const Item = ({ item }: ItemProps) => {
   return (
     <article
       className="w-full flex items-center justify-between p-2 rounded-xl transition-all odd:bg-[#ddf8f5] even:bg-[#f4fffa] dark:odd:bg-[#e3fdf0]/20 dark:even:bg-[#f4fffa]/5 lg:px-4"
-      key={item.id}
+      key={item._id}
     >
       <div className="flex flex-col">
-        <h3 className="">{item.attributes.titulo}</h3>
-        {item.attributes.tituloIngles && (
+        <h3 className="">{item.title}</h3>
+        {item.englishTitle && (
           <h4 className="text-[13px] text-card-foreground relative bottom-1">
-            {item.attributes.tituloIngles}
+            {item.englishTitle}
           </h4>
         )}
-        {item.attributes.descripcion && (
+        {item.description && (
           <p className="text-[12px] w-8/12 relative leading-3">
-            {item.attributes.descripcion}
+            {item.description}
           </p>
         )}
       </div>
-      <p className="text-lg font-bold">${item.attributes.precio}</p>
+      <p className="text-lg font-bold">${item.price}</p>
     </article>
   );
 };
