@@ -134,9 +134,9 @@ const Items = ({ items }: ItemsProps) => {
       </div>
       <section className="w-full flex flex-col items-center gap-6 pb-10 sm:grid sm:grid-cols-2 sm:items-start lg:grid-cols-3 lg:grid-rows-3">
         {categories.map(({ title, category, icon }) => {
-          const filteredList = items.filter(
-            (item) => item.category === category
-          );
+          const filteredList = items
+            .filter((item) => item.category === category)
+            .sort((a, b) => a.title.localeCompare(b.title)); // Sort alphabetically by item title;
 
           if (selectValue !== "todas" && selectValue !== category) {
             return null; // Skip rendering if category doesn't match
